@@ -129,6 +129,95 @@ button:hover {
   100% { transform: scale(1); }
 }
 
+@media (max-width: 950px) {
+
+  .card {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .arena {
+    width: 100%;
+    height: 250px;
+  }
+
+  .capybara {
+    width: 70px;
+  }
+
+  .pond {
+    width: 120px;
+  }
+
+
+  .info-box {
+    position: static;
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+
+
+@media (max-width: 700px) {
+
+  header {
+    font-size: 2.5rem;
+  }
+  .arena {
+    height: 220px;
+  }
+  textarea {
+    width: 95%;
+    height: 90px;
+    font-size: 0.9rem;
+  }
+  .capybara {
+    width: 60px;
+  }
+  .pond {
+    width: 100px;
+  }
+  button {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+  #levelTitle {
+    font-size: 1.3rem;
+  }
+  .info-box {
+    font-size: 0.85rem;
+    width: 100%;
+  }
+}
+
+
+
+@media (max-width: 500px) {
+
+  header {
+    font-size: 2.2rem;
+  }
+  .card {
+    padding: 10px;
+  }
+  .arena {
+    height: 180px;
+  }
+  .capybara {
+    width: 50px;
+  }
+  .pond {
+    width: 85px;
+  }
+  textarea {
+    height: 80px;
+  }
+  .info-box {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+}
 
 
 

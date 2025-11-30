@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #805932;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;       
+  overflow: hidden;   
+}
+
+header {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 10px 0;
+  font-family: "Luckiest Guy", cursive;
+}
+
+.card {
+  background: #a97449;
+  border: 3px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 900px;   
+  text-align: center;
+}
+
+.arena {
+  margin: 20px auto;
+  width: 800px;     
+  height: 280px;     
+  background: bisque;
+  border: 2px solid rgb(146, 90, 26);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.capybara {
+  width: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10; 
+  transform: translate(0, 0);
+  transition: transform 0.9s ease-in-out;
+}
+
+.pond {
+  position: absolute;
+  width: 150px;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+.pos-left-center   { left: 15%; top: 50%; transform: translate(-50%, -50%); }
+.pos-center        { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.pos-right-center  { left: 85%; top: 50%; transform: translate(-50%, -50%); }
+
+.pos-top-center    { left: 50%; top: 15%; transform: translate(-50%, -50%); }
+.pos-bottom-center { left: 50%; top: 85%; transform: translate(-50%, -50%); }
+
+.pos-top-left      { left: 15%; top: 15%; transform: translate(-50%, -50%); }
+.pos-top-right     { left: 85%; top: 15%; transform: translate(-50%, -50%); }
+.pos-bottom-left   { left: 15%; top: 85%; transform: translate(-50%, -50%); }
+.pos-bottom-right  { left: 85%; top: 85%; transform: translate(-50%, -50%); }
+
+textarea {
+  width: 80%;
+  height: 100px;
+  font-family: monospace;
+  font-size: 1rem;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+#submitBtn { background: #24ec77; color: white; }
+#prevBtn { background: #3498db; color: white; }
+#nextBtn { background: #e65542; color: white; }
+
+.feedback {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 0.95rem;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 10px;
+  border-radius: 10px;
+  line-height: 1.4;
+}
+
+.arrived {
+  animation: bounce 0.5s;
+}
+
+
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+
+
+

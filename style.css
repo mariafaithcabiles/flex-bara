@@ -121,21 +121,6 @@ button:hover {
 .arrived {
   animation: bounce 0.5s;
 }
-.top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#scoreDisplay {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
 
 
 @keyframes bounce {

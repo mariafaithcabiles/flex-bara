@@ -1,193 +1,159 @@
 const levels = [
   {
     title: "Level 1",
-    pond: ["pos-right-center"],
-    hint: "Move Flexbara to the right middle.",
-    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
-    answer: ["justify-content:flex-end", "align-items:center"],
-    capyCount: 1
+    hint: "Use justify-content to move the capybara horizontally.",
+    description: "",
+    correct: "justify-content: center;",
+    pondPos: { justify: "center", align: "center" }
   },
   {
     title: "Level 2",
-    pond: ["pos-center"],
-    hint: "Move Flexbara in the exact center.",
-    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
-    answer: ["justify-content:center", "align-items:center"],
-    capyCount: 1
+    hint: "Left side alignment.",
+    description: "",
+    correct: "justify-content: flex-start;",
+    pondPos: { justify: "flex-start", align: "center" }
   },
   {
     title: "Level 3",
-    pond: ["pos-bottom-right"],
-    hint: "Move Flexbara to bottom-right.",
-    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
-    answer: ["justify-content:flex-end", "align-items:flex-end"],
-    capyCount: 1
+    hint: "Right side alignment.",
+    description: "",
+    correct: "justify-content: flex-end;",
+    pondPos: { justify: "flex-end", align: "center" }
   },
   {
     title: "Level 4",
-    pond: ["pos-top-center"],
-    hint: "Move Flexbara to top-center.",
-    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
-    answer: ["justify-content:center", "align-items:flex-start"],
-    capyCount: 1
+    hint: "Move vertically using align-items.",
+    description: "",
+    correct: "align-items: flex-end;",
+    pondPos: { justify: "center", align: "flex-end" }
   },
   {
     title: "Level 5",
-    pond: ["pos-bottom-left"],
-    hint: "Put Flexbara at bottom-left.",
-    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
-    answer: ["justify-content:flex-start", "align-items:flex-end"],
-    capyCount: 1
+    hint: "Center vertically.",
+    description: "",
+    correct: "align-items: center;",
+    pondPos: { justify: "center", align: "center" }
   },
   {
     title: "Level 6",
-    pond: ["pos-left-center", "pos-right-center"],
-    hint: "Two Flexbaras! Place them left and right.",
-    description: "Try using <b>space-between</b> to spread them apart. Use <b>align-items</b> to center vertically.",
-    answer: ["justify-content:space-between", "align-items:center"],
-    capyCount: 2
+    hint: "Align top-left.",
+    description: "",
+    correct: "justify-content: flex-start; align-items: flex-start;",
+    pondPos: { justify: "flex-start", align: "flex-start" }
   },
   {
     title: "Level 7",
-    pond: ["pos-left-center", "pos-center", "pos-right-center"],
-    hint: "Three Flexbaras spaced with space-around.",
-    description: "Use <b>justify-content</b> with <b>align-items</b>.",
-    answer: ["justify-content:space-around", "align-items:center"],
-    capyCount: 3
+    hint: "Use space-around.",
+    description: "",
+    correct: "justify-content: space-around;",
+    pondPos: { justify: "space-around", align: "center" }
   },
   {
     title: "Level 8",
-    pond: ["pos-top-center", "pos-bottom-center"],
-    hint: "Two Flexbaras, one at the top and one at the bottom.",
-    description: "Now try using <b>flex-direction</b>. <b>row</b>, <b>column</b>. And use <b>justify-content</b>.",
-    answer: ["flex-direction:column", "justify-content:space-between", "align-items:center"],
-    capyCount: 2
+    hint: "Move to bottom center.",
+    description: "",
+    correct: "align-items: flex-end;",
+    pondPos: { justify: "center", align: "flex-end" }
   },
   {
     title: "Level 9",
-    pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
-    hint: "Stack Flexbaras vertically in the middle.",
-    description: "Use <b>flex-direction</b>, <b>justify-content</b> and <b>align-items</b>.",
-    answer: ["flex-direction:column", "justify-content:center", "align-items:center"],
-    capyCount: 3
-  },
-  {
-    title: "Level 10",
-    pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
-    hint: "Three Flexbaras aligned vertically with space-between.",
-    description: "Use <b>flex-direction</b> and spacing.",
-    answer: ["flex-direction:column", "justify-content:space-between", "align-items:center"],
-    capyCount: 3
+    hint: "Use center both ways.",
+    description: "",
+    correct: "justify-content: center; align-items: center;",
+    pondPos: { justify: "center", align: "center" }
   }
 ];
 
+let currentLevel = 0;
+let score = 0;
 
-let level = 0;
+let levelCompleted = Array(levels.length).fill(false);
 
+
+const capybara = document.getElementById("capybara");
+const pond = document.getElementById("pond");
 const arena = document.getElementById("arena");
-const title = document.getElementById("levelTitle");
+const levelTitle = document.getElementById("levelTitle");
 const hint = document.getElementById("hint");
-const desc = document.getElementById("description");
 const feedback = document.getElementById("feedback");
-const input = document.getElementById("codeInput");
+const scoreDisplay = document.getElementById("scoreDisplay");
 
-function loadLevel(i) {
-  const data = levels[i];
-  title.textContent = data.title;
-  hint.textContent = data.hint;
-  desc.innerHTML = data.description;
-  feedback.textContent = "";
-  input.value = "";
-
- 
-  arena.innerHTML = "";
+const submitBtn = document.getElementById("submitBtn");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 
 
-  for (let j = 0; j < data.capyCount; j++) {
-    let cap = document.createElement("img");
-    cap.src = "cute-capybara-character-exotic-rodent-in-sunglasses-hand-drawn-illustration-vector-removebg-preview.png";
-    cap.className = "capybara";
-    cap.dataset.index = j;
-    arena.appendChild(cap);
-  }
+function loadLevel() {
+  const lvl = levels[currentLevel];
+  levelTitle.innerHTML = lvl.title;
+  hint.innerText = lvl.hint;
 
 
-  data.pond.forEach((p, idx) => {
-    let pond = document.createElement("img");
-    pond.src = "istockphoto-1249854606-612x612-removebg-preview.png";
-    pond.className = "pond " + p;
-    arena.appendChild(pond);
-  });
+  document.getElementById("codeInput").value = "";
+  feedback.innerText = "";
+
+
+  capybara.style.transition = "none";
+  capybara.style.transform = "translate(0px, 0px)";
+  setTimeout(() => {
+    capybara.style.transition = "all 0.8s ease";
+  }, 50);
 
 
   arena.style.display = "flex";
-  arena.style.flexDirection = "row";
-  arena.style.justifyContent = "flex-start";
-  arena.style.alignItems = "flex-start";
+  arena.style.justifyContent = lvl.pondPos.justify;
+  arena.style.alignItems = lvl.pondPos.align;
 }
 
-function checkAnswer() {
-  const user = input.value.replace(/\s+/g, "").toLowerCase().split(";");
-  const answer = levels[level].answer;
+loadLevel();
 
-  let correct = true;
-  for (let i = 0; i < answer.length; i++) {
-    if (!user.includes(answer[i])) {
-      correct = false;
-      break;
+
+function moveCapybaraToPond() {
+  const pondRect = pond.getBoundingClientRect();
+  const arenaRect = arena.getBoundingClientRect();
+  const capyRect = capybara.getBoundingClientRect();
+
+  const x = pondRect.left - arenaRect.left;
+  const y = pondRect.top - arenaRect.top;
+
+  capybara.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+
+submitBtn.addEventListener("click", () => {
+  const code = document.getElementById("codeInput").value.trim();
+  const lvl = levels[currentLevel];
+
+  if (code === lvl.correct) {
+    feedback.style.color = "green";
+    feedback.innerText = "Correct!";
+
+    moveCapybaraToPond();
+
+    if (!levelCompleted[currentLevel]) {
+      score++;
+      levelCompleted[currentLevel] = true;
+      scoreDisplay.innerText = `Score: ${score}`;
     }
-  }
 
-  if (correct) {
-    feedback.textContent = "✅ Correct!";
-    moveCapys();
   } else {
-    feedback.textContent = "❌ Try again!";
-  }
-}
-
-function moveCapys() {
-  const capys = arena.querySelectorAll(".capybara");
-  const ponds = arena.querySelectorAll(".pond");
-
-  capys.forEach((capy, i) => {
-    const arenaRect = arena.getBoundingClientRect();
-    const pondRect = ponds[i].getBoundingClientRect();
-    const capRect = capy.getBoundingClientRect();
-
-    const capX = capRect.left - arenaRect.left + capRect.width / 2;
-    const capY = capRect.top - arenaRect.top + capRect.height / 2;
-
-    const pondX = pondRect.left - arenaRect.left + pondRect.width / 2;
-    const pondY = pondRect.top - arenaRect.top + pondRect.height / 2;
-
-    const dx = pondX - capX;
-    const dy = pondY - capY;
-
-    capy.style.transition = "transform 0.9s ease-in-out";
-    capy.style.transform = `translate(${dx}px, ${dy}px)`;
-
-    capy.addEventListener("transitionend", () => {
-      capy.classList.add("arrived");
-      setTimeout(() => capy.classList.remove("arrived"), 400);
-      capy.style.transition = "none";
-    }, { once: true });
-  });
-}
-
-document.getElementById("submitBtn").addEventListener("click", checkAnswer);
-document.getElementById("nextBtn").addEventListener("click", () => {
-  if (level < levels.length - 1) {
-    level++;
-    loadLevel(level);
-  }
-});
-document.getElementById("prevBtn").addEventListener("click", () => {
-  if (level > 0) {
-    level--;
-    loadLevel(level);
+    feedback.style.color = "red";
+    feedback.innerText = "Incorrect. Try again!";
   }
 });
 
-loadLevel(level);
+
+nextBtn.addEventListener("click", () => {
+  if (currentLevel < levels.length - 1) {
+    currentLevel++;
+    loadLevel();
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentLevel > 0) {
+    currentLevel--;
+    loadLevel();
+  }
+});
 

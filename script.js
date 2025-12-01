@@ -81,12 +81,10 @@ const levels = [
   }
 ];
 
-
-let level = 0;
-
 let score = 0;
 const scoreDisplay = document.getElementById("scoreDisplay");
 
+let level = 0;
 
 const arena = document.getElementById("arena");
 const title = document.getElementById("levelTitle");

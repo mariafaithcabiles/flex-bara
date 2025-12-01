@@ -43,8 +43,8 @@ const levels = [
     title: "Level 6",
     pond: ["pos-left-center", "pos-right-center"],
     hint: "Two Flexbaras! Place them left and right.",
-    description: "Try using <b>space-between</b> to spread them apart. Use <b>align-items</b> to center vertically.",
-    answer: ["justify-content:space-between", "align-items:center"],
+    description: "Try using <b>space-around</b> to spread them apart. Use <b>align-items</b> to center vertically.",
+    answer: ["justify-content:space-around", "align-items:center"],
     capyCount: 2
   },
   {

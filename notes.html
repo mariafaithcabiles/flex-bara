@@ -22,6 +22,22 @@
       color: #5d3a1a;
     }
 
+    .back-btn {
+      display: inline-block;
+      background: #c1854d;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.2s ease;
+      margin-bottom: 20px;
+    }
+
+    .back-btn:hover {
+      background: #a86f3c;
+    }
+
     .section {
       background: #ffffff;
       border-left: 5px solid #c1854d;
@@ -40,17 +56,34 @@
     ul {
       margin-top: 8px;
     }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 15px;
+      }
+      .section {
+        padding: 12px 15px;
+      }
+      .back-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<h1> Flexbox Notes</h1>
+<a href="index.html" class="back-btn">⬅ Go Back to Game</a>
+
+<h1>📘 Flexbox Notes</h1>
 
 <div class="section">
   <h2>What is Flexbox?</h2>
   <p>
     Flexbox is a layout system that lets you easily position items inside a container —
-    horizontally, vertically, centered, or spaced apart.  
+    horizontally, vertically, centered, or spaced apart.
     Flexbara uses Flexbox to help you place the capybaras into the right ponds.
   </p>
 </div>
@@ -58,8 +91,7 @@
 <div class="section">
   <h2>1. <code>justify-content</code></h2>
   <p>
-    This controls how items are positioned <b>horizontally</b> (left to right).  
-    Flexbox Froggy uses this heavily — and so does Flexbara!
+    This property controls how items are positioned <b>horizontally</b> (left to right).
   </p>
 
   <p><b>Values:</b></p>
@@ -67,7 +99,7 @@
     <li><code>flex-start</code> — Items align to the left side.</li>
     <li><code>flex-end</code> — Items align to the right side.</li>
     <li><code>center</code> — Items align at the center horizontally.</li>
-    <li><code>space-between</code> — First item at the left, last at the right, equal space in between.</li>
+    <li><code>space-between</code> — Items spread out with equal spacing between them.</li>
     <li><code>space-around</code> — Equal spacing around every item.</li>
   </ul>
 
@@ -78,15 +110,14 @@
 <div class="section">
   <h2>2. <code>align-items</code></h2>
   <p>
-    This controls how items are positioned <b>vertically</b> (top to bottom).  
-    Perfect for levels where Flexbara must move up or down.
+    This property controls how items are positioned <b>vertically</b> (top to bottom).
   </p>
 
   <p><b>Values:</b></p>
   <ul>
     <li><code>flex-start</code> — Items go to the top.</li>
     <li><code>flex-end</code> — Items go to the bottom.</li>
-    <li><code>center</code> — Items go to the middle vertically.</li>
+    <li><code>center</code> — Items go to the vertical center.</li>
   </ul>
 
   <p><b>Syntax:</b></p>
@@ -96,14 +127,13 @@
 <div class="section">
   <h2>3. <code>flex-direction</code></h2>
   <p>
-    Flexbox normally positions items left-to-right.  
-    But you can change the direction using <code>flex-direction</code>.
+    This property controls the direction items are laid out.
   </p>
 
   <p><b>Values:</b></p>
   <ul>
-    <li><code>row</code> — Horizontal layout (default)</li>
-    <li><code>column</code> — Vertical layout (items stack top-to-bottom)</li>
+    <li><code>row</code> — Items go left-to-right (default).</li>
+    <li><code>column</code> — Items go top-to-bottom.</li>
   </ul>
 
   <p><b>Syntax:</b></p>
@@ -111,26 +141,26 @@
 </div>
 
 <div class="section">
-  <h2>How These Work Together</h2>
+  <h2>How They Work Together</h2>
   <p>
-    Many levels require <b>two properties</b>:
+    Many Flexbara levels need <b>two properties</b>:
   </p>
 
   <ul>
-    <li><code>justify-content</code> for horizontal movement</li>
-    <li><code>align-items</code> for vertical movement</li>
+    <li><code>justify-content</code> — horizontal movement</li>
+    <li><code>align-items</code> — vertical movement</li>
   </ul>
 
   <p>
-    For vertical layouts, you may also use:
+    Some levels also use:
   </p>
 
   <ul>
-    <li><code>flex-direction: column</code></li>
+    <li><code>flex-direction</code> — to switch from horizontal to vertical layout</li>
   </ul>
 
   <p>
-    Master these three, and you'll master Flexbara!
+    Master these properties and you'll be a Flexbox pro!
   </p>
 </div>
 

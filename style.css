@@ -121,6 +121,22 @@ button:hover {
 .arrived {
   animation: bounce 0.5s;
 }
+.notes-score-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;   
+  margin-top: 10px;
+}
+
+#scoreDisplay {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+}
 
 
 @keyframes bounce {

@@ -84,6 +84,10 @@ const levels = [
 
 let level = 0;
 
+let score = 0;
+const scoreDisplay = document.getElementById("scoreDisplay");
+
+
 const arena = document.getElementById("arena");
 const title = document.getElementById("levelTitle");
 const hint = document.getElementById("hint");
@@ -140,6 +144,9 @@ function checkAnswer() {
 
   if (correct) {
     feedback.textContent = "✅ Correct!";
+        score++;
+    scoreDisplay.textContent = "Score: " + score;
+
     moveCapys();
   } else {
     feedback.textContent = "❌ Try again!";

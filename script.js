@@ -144,7 +144,6 @@ function checkAnswer() {
     feedback.textContent = "✅ Correct!";
         score++;
     scoreDisplay.textContent = "Score: " + score;
-
     moveCapys();
   } else {
     feedback.textContent = "❌ Try again!";

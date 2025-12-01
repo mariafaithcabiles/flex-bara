@@ -129,6 +129,25 @@ button:hover {
   100% { transform: scale(1); }
 }
 
+.notes-link {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 6px 12px;
+  background: #ffffff33;
+  border: 1px solid white;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: white;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.notes-link:hover {
+  background: white;
+  color: #6b4226;
+}
+
+
 @media (max-width: 950px) {
 
   .card {

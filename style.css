@@ -3,7 +3,9 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #FFDEAD;
+  background: url(../tumblr_7e5be0b460f1404bfbf24807efa95f04_a87a377c_400.gif);
+  background-repeat: no-repeat;
+  background-size: 220vh;
   color: white;
   display: flex;
   flex-direction: column;
@@ -20,7 +22,7 @@ header {
 }
 
 .card {
-  background: #a97449;
+  background: #ce996e;
   border: 3px solid white;
   border-radius: 15px;
   padding: 20px;

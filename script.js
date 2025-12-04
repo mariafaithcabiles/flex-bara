@@ -68,18 +68,27 @@ const levels = [
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
     hint: "Stack Flexbaras vertically in the middle.",
     description: "Use <b>flex-direction</b>, <b>justify-content</b> and <b>align-items</b>.",
-    answer: ["flex-direction:column", "justify-content:center", "align-items:center"],
+    answer: ["flex-direction:column", "justify-content:space-evenly", "align-items:center"],
     capyCount: 3
   },
   {
+    title: "Level 10",
+    pond: ["pos-top-left", "pos-top-center", "pos-top-left"],
+    hint: "Three Flexbaras aligned horizontally on top with spacing.",
+    description: "Use <b>flex-direction</b> and spacing.",
+    answer: ["flex-direction: row;","justify-content: space-evenly;", "align-items: flex-start;"],
+    capyCount: 3
+  }
+];
+
+/*   {
     title: "Level 10",
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
     hint: "Three Flexbaras aligned vertically with space-between.",
     description: "Use <b>flex-direction</b> and spacing.",
     answer: ["flex-direction:column", "justify-content:space-between", "align-items:center"],
     capyCount: 3
-  }
-];
+  } */
 
 
 let level = 0;
@@ -146,7 +155,27 @@ function checkAnswer() {
     feedback.textContent = "❌ Try again!";
   }
 }
+function moveCapy() {
+  const arena = document.getElementById("arena");
+  const capy = document.getElementById("capybara");
+  const pond = document.querySelector(".pond");
 
+  
+  const pondRect = pond.getBoundingClientRect();
+  const arenaRect = arena.getBoundingClientRect();
+
+ 
+  const targetX = pondRect.left - arenaRect.left + (pondRect.width / 2) - (capy.offsetWidth / 2);
+  const targetY = pondRect.top - arenaRect.top + (pondRect.height / 2) - (capy.offsetHeight / 2);
+
+  capy.style.transition = "transform 0.6s ease";
+  capy.style.transform = translate(${targetX}px, ${targetY}px);
+
+  
+  capy.style.zIndex = "10";
+}
+
+/*
 function moveCapys() {
   const capys = arena.querySelectorAll(".capybara");
   const ponds = arena.querySelectorAll(".pond");
@@ -174,7 +203,7 @@ function moveCapys() {
       capy.style.transition = "none";
     }, { once: true });
   });
-}
+} */
 
 document.getElementById("submitBtn").addEventListener("click", checkAnswer);
 document.getElementById("nextBtn").addEventListener("click", () => {

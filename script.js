@@ -124,7 +124,7 @@ function loadLevel(i) {
   arena.style.justifyContent = "flex-start";
   arena.style.alignItems = "flex-start";
 }
-
+{
 function checkAnswer() {
   const user = input.value.replace(/\s+/g, "").toLowerCase().split(";");
   const answer = levels[level].answer;
@@ -145,7 +145,7 @@ function checkAnswer() {
     feedback.textContent = "❌ Try again!";
   }
 }
-
+{
 function moveCapys() {
   const capys = arena.querySelectorAll(".capybara");
   const ponds = arena.querySelectorAll(".pond");

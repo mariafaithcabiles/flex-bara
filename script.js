@@ -1,4 +1,3 @@
-The jscript in the website is not working can you help me what seems to be the problem? This is the code:
 
 const levels = [
   {

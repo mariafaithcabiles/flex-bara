@@ -123,7 +123,6 @@ function loadLevel(i) {
 }
 
 
-
 function checkAnswer() {
   const user = input.value.replace(/\s+/g, "").toLowerCase().split(";");
   const answer = levels[level].answer;
@@ -164,13 +163,16 @@ function moveCapys() {
     const dx = pondX - capX;
     const dy = pondY - capY;
 
-    capy.style.transition = "transform 0.9s ease-in-out";
-    capy.style.transform = `translate(${dx}px, ${dy}px)`;
+       capy.style.transition = "transform 0.9s ease-in-out";
+      capy.style.transform = `translate(${dx}px, ${dy}px)`;
 
-    capy.addEventListener("transitionend", () => {
-      capy.style.transition = "none";
-      capy.style.transform = "none"; // IMPORTANT FIX
-    }, { once: true });
+      capy.addEventListener("transitionend", function onEnd() {
+        capy.classList.add("arrived");
+        setTimeout(() => capy.classList.remove("arrived"), 400);
+        capy.style.transition = "none";
+        capy.removeEventListener("transitionend", onEnd);
+      }, { once: true });
+    });
   });
 }
 

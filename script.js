@@ -163,8 +163,10 @@ function moveCapys() {
     capy.style.transform = `translate(${dx}px, ${dy}px)`;
 
     capy.addEventListener("transitionend", () => {
+      capy.classList.add("arrived");
+      setTimeout(() => capy.classList.remove("arrived"), 400);
       capy.style.transition = "none";
-      capy.style.transform = "none"; // prevents disappearing/reset issues
+      capy.style.transform = "none"; // IMPORTANT FIX
     }, { once: true });
   });
 }

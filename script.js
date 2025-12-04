@@ -3,15 +3,15 @@ const levels = [
     title: "Level 1",
     pond: ["pos-right-center"],
     hint: "Move Flexbara to the right middle.",
-    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically.",
+    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
     answer: ["justify-content:flex-end", "align-items:center"],
     capyCount: 1
   },
   {
     title: "Level 2",
     pond: ["pos-center"],
-    hint: "Move Flexbara in the center.",
-    description: "Use <b>justify-content:center</b> and <b>align-items:center</b>.",
+    hint: "Move Flexbara in the exact center.",
+    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
     answer: ["justify-content:center", "align-items:center"],
     capyCount: 1
   },
@@ -19,7 +19,7 @@ const levels = [
     title: "Level 3",
     pond: ["pos-bottom-right"],
     hint: "Move Flexbara to bottom-right.",
-    description: "Use <b>justify-content:flex-end</b> and <b>align-items:flex-end</b>.",
+    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
     answer: ["justify-content:flex-end", "align-items:flex-end"],
     capyCount: 1
   },
@@ -27,59 +27,59 @@ const levels = [
     title: "Level 4",
     pond: ["pos-top-center"],
     hint: "Move Flexbara to top-center.",
-    description: "Use <b>justify-content:center</b> and <b>align-items:flex-start</b>.",
+    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
     answer: ["justify-content:center", "align-items:flex-start"],
     capyCount: 1
   },
   {
     title: "Level 5",
     pond: ["pos-bottom-left"],
-    hint: "Move Flexbara to bottom-left.",
-    description: "Use <b>justify-content:flex-start</b> and <b>align-items:flex-end</b>.",
+    hint: "Put Flexbara at bottom-left.",
+    description: "Use <b>justify-content</b> to align horizontally. Use <b>align-items</b> to align vertically. <b>flex-end</b>, <b>flex-start</b>, <b>center</b>",
     answer: ["justify-content:flex-start", "align-items:flex-end"],
     capyCount: 1
   },
   {
     title: "Level 6",
     pond: ["pos-left-center", "pos-right-center"],
-    hint: "Two Flexbaras left and right.",
-    description: "Use <b>justify-content:space-around</b> and <b>align-items:center</b>.",
+    hint: "Two Flexbaras! Place them left and right.",
+    description: "Try using <b>space-around</b> to spread them apart. Use <b>align-items</b> to center vertically.",
     answer: ["justify-content:space-around", "align-items:center"],
     capyCount: 2
   },
   {
     title: "Level 7",
     pond: ["pos-left-center", "pos-center", "pos-right-center"],
-    hint: "Three Flexbaras spaced.",
-    description: "Use <b>justify-content:space-around</b> with <b>align-items:center</b>.",
+    hint: "Three Flexbaras spaced with space-around.",
+    description: "Use <b>justify-content</b> with <b>align-items</b>.",
     answer: ["justify-content:space-around", "align-items:center"],
     capyCount: 3
   },
   {
     title: "Level 8",
     pond: ["pos-top-center", "pos-bottom-center"],
-    hint: "Two Flexbaras top to bottom.",
-    description: "Use <b>flex-direction:column</b> and <b>justify-content:space-between</b>.",
+    hint: "Two Flexbaras, one at the top and one at the bottom with space between.",
+    description: "Now try using <b>flex-direction</b>. <b>row</b>, <b>column</b>. And use <b>justify-content</b>.",
     answer: ["flex-direction:column", "justify-content:space-between", "align-items:center"],
     capyCount: 2
   },
   {
     title: "Level 9",
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
-    hint: "Stack Flexbaras vertically.",
-    description: "Use column layout with space-around.",
-    answer: ["flex-direction:column", "justify-content:space-around", "align-items:center"],
+    hint: "Stack Flexbaras vertically in the middle.",
+    description: "Use <b>flex-direction</b>, <b>justify-content</b> and <b>align-items</b>.",
+    answer: ["flex-direction:column", "justify-content: space-around", "align-items:center"],
     capyCount: 3
   },
  {
     title: "Level 10",
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
-    hint: "Space evenly vertically.",
-    description: "Use <b>flex-direction:column</b> and <b>justify-content:space-between</b>.",
+    hint: "Three Flexbaras aligned vertically with space-between.",
+    description: "Use <b>flex-direction</b> and spacing.",
     answer: ["flex-direction:column", "justify-content:space-between", "align-items:center"],
     capyCount: 3
-  }
-]; // <-- FIXED MISSING BRACKET HERE
+  },
+  ]
 
 
 

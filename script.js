@@ -167,18 +167,14 @@ function moveCapys() {
     capy.style.transition = "transform 0.9s ease-in-out";
     capy.style.transform = translate(${dx}px, ${dy}px);
 
-    capy.addEventListener("transitionend", function onEnd() {
-          capy.classList.add("arrived");
-          setTimeout(() => capy.classList.remove("arrived"), 400);
-          capy.style.transition = "none";
-          capy.removeEventListener("transitionend", onEnd);
-        }, { once: true });
-      } catch (err) {
-        console.error("Error moving capy:", err);
-      }
-    });
+    capy.addEventListener("transitionend", () => {
+      capy.classList.add("arrived");
+      setTimeout(() => capy.classList.remove("arrived"), 400);
+      capy.style.transition = "none";
+      capy.style.transform = "none"; // IMPORTANT FIX
+    }, { once: true });
   });
-}
+ 
 
 document.getElementById("submitBtn").addEventListener("click", checkAnswer);
 document.getElementById("nextBtn").addEventListener("click", () => {

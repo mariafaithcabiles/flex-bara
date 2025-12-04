@@ -82,138 +82,92 @@ const levels = [
 ];
 
 let level = 0;
+
 const arena = document.getElementById("arena");
 const title = document.getElementById("levelTitle");
 const hint = document.getElementById("hint");
-const desc  = document.getElementById("description");
+const desc = document.getElementById("description");
 const feedback = document.getElementById("feedback");
 const input = document.getElementById("codeInput");
 
-// -------------------- helpers --------------------
-function clearArena() {
-  arena.innerHTML = "";
-}
-
-// create capybaras and ponds inside arena based on level data
-function populateArena(data) {
-  // create capybaras
-  for (let j = 0; j < data.capyCount; j++) {
-    const cap = document.createElement("img");
-    cap.src = "cute-capybara-character-exotic-rodent-in-sunglasses-hand-drawn-illustration-vector-removebg-preview.png";
-    cap.className = "capybara";
-    cap.dataset.index = j;
-    // ensure starting position is top-left
-    cap.style.left = "0px";
-    cap.style.top  = "0px";
-    cap.style.transform = "translate(0,0)";
-    arena.appendChild(cap);
-  }
-
-  // create ponds (use the exact order provided)
-  data.pond.forEach((p) => {
-    const pond = document.createElement("img");
-    pond.src = "istockphoto-1249854606-612x612-removebg-preview.png";
-    pond.className = "pond " + p;
-    arena.appendChild(pond);
-  });
-}
-
-// sanitize and normalize user CSS input into an array of "property:value" strings (lowercased)
-function parseUserInput(raw) {
-  if (!raw) return [];
-  return raw
-    .split(";")
-    .map(s => s.trim().toLowerCase())
-    .filter(Boolean) // remove empty
-    .map(s => s.replace(/\s*:\s*/,'::')) // temporarily mark colon to avoid extra spaces
-    .map(s => s.replace(/\s+/g, " "))     // normalize spaces
-    .map(s => s.replace(/::/,':'));       // restore colon
-}
-
-// simple checker: ensure every required token appears in the provided rules
-function userMatchesAnswer(userRules, requiredRules) {
-  return requiredRules.every(req => {
-    // require exact substring match (normalized)
-    return userRules.some(r => r === req);
-  });
-}
-
-// -------------------- core functions --------------------
 function loadLevel(i) {
   const data = levels[i];
   title.textContent = data.title;
   hint.textContent = data.hint;
-  desc.innerHTML = data.description || "";
+  desc.innerHTML = data.description;
   feedback.textContent = "";
   input.value = "";
 
-  // clear & populate
-  clearArena();
-  populateArena(data);
+ 
+  arena.innerHTML = "";
 
-  // reset arena flexbox properties (so students start from same baseline)
+
+  for (let j = 0; j < data.capyCount; j++) {
+    let cap = document.createElement("img");
+    cap.src = "cute-capybara-character-exotic-rodent-in-sunglasses-hand-drawn-illustration-vector-removebg-preview.png";
+    cap.className = "capybara";
+    cap.dataset.index = j;
+    arena.appendChild(cap);
+  }
+
+
+  data.pond.forEach((p, idx) => {
+    let pond = document.createElement("img");
+    pond.src = "istockphoto-1249854606-612x612-removebg-preview.png";
+    pond.className = "pond " + p;
+    arena.appendChild(pond);
+  });
+
+
   arena.style.display = "flex";
   arena.style.flexDirection = "row";
   arena.style.justifyContent = "flex-start";
   arena.style.alignItems = "flex-start";
 }
-
+{
 function checkAnswer() {
-  const userRaw = input.value || "";
-  const userRules = parseUserInput(userRaw);
-  const required = levels[level].answer;
+  const user = input.value.replace(/\s+/g, "").toLowerCase().split(";");
+  const answer = levels[level].answer;
 
-  if (userMatchesAnswer(userRules, required)) {
+  let correct = true;
+  for (let i = 0; i < answer.length; i++) {
+    if (!user.includes(answer[i])) {
+      correct = false;
+      break;
+    }
+  }
+
+  if (correct) {
     feedback.textContent = "✅ Correct!";
-    feedback.style.color = "lime";
+  
     moveCapys();
   } else {
     feedback.textContent = "❌ Try again!";
-    feedback.style.color = "red";
   }
 }
-
+{
 function moveCapys() {
-  // get visible capybaras and visible ponds
-  const capys = Array.from(arena.querySelectorAll(".capybara"));
-  const ponds = Array.from(arena.querySelectorAll(".pond"));
+  const capys = arena.querySelectorAll(".capybara");
+  const ponds = arena.querySelectorAll(".pond");
 
-  if (capys.length === 0 || ponds.length === 0) {
-    console.warn("No capybaras or ponds available to move.");
-    return;
-  }
+  capys.forEach((capy, i) => {
+    const arenaRect = arena.getBoundingClientRect();
+    const pondRect = ponds[i].getBoundingClientRect();
+    const capRect = capy.getBoundingClientRect();
 
-  // wait one frame so layout settles (important if images just injected)
-  requestAnimationFrame(() => {
-    capys.forEach((capy, i) => {
-      try {
-        // choose pond index: if fewer ponds than capys, reuse last pond for extras
-        const pondIndex = i < ponds.length ? i : (ponds.length - 1);
-        const pond = ponds[pondIndex];
-        if (!pond) {
-          console.warn("Missing pond for capy index", i);
-          return;
-        }
+    const capX = capRect.left - arenaRect.left + capRect.width / 2;
+    const capY = capRect.top - arenaRect.top + capRect.height / 2;
 
-        const arenaRect = arena.getBoundingClientRect();
-        const capRect   = capy.getBoundingClientRect();
-        const pondRect  = pond.getBoundingClientRect();
+    const pondX = pondRect.left - arenaRect.left + pondRect.width / 2;
+    const pondY = pondRect.top - arenaRect.top + pondRect.height / 2;
 
-        // centers relative to arena
-        const capCenterX  = (capRect.left - arenaRect.left) + capRect.width / 2;
-        const capCenterY  = (capRect.top  - arenaRect.top)  + capRect.height / 2;
-        const pondCenterX = (pondRect.left - arenaRect.left) + pondRect.width / 2;
-        const pondCenterY = (pondRect.top  - arenaRect.top)  + pondRect.height / 2;
+    const dx = pondX - capX;
+    const dy = pondY - capY;
 
-        const dx = Math.round(pondCenterX - capCenterX);
-        const dy = Math.round(pondCenterY - capCenterY);
+    capy.style.transition = "transform 0.9s ease-in-out";
+    capy.style.transform = translate(${dx}px, ${dy}px);
 
-    
-        capy.style.transition = "transform 0.9s ease-in-out";
-        capy.style.transform = translate(${dx}px, ${dy}px);
-
-        
-        capy.addEventListener("transitionend", function onEnd() {
+    capy.addEventListener("transitionend", function onEnd() {
           capy.classList.add("arrived");
           setTimeout(() => capy.classList.remove("arrived"), 400);
           capy.style.transition = "none";
@@ -239,7 +193,6 @@ document.getElementById("prevBtn").addEventListener("click", () => {
     loadLevel(level);
   }
 });
-
 
 loadLevel(level);
 

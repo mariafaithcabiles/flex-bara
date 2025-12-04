@@ -112,7 +112,7 @@ function loadLevel(i) {
 
   data.pond.forEach((p, idx) => {
     let pond = document.createElement("img");
-    pond.src = "pond-removebg-preview.png";
+    pond.src = "istockphoto-1249854606-612x612-removebg-preview.png";
     pond.className = "pond " + p;
     arena.appendChild(pond);
   });

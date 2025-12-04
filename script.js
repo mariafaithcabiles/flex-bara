@@ -104,7 +104,7 @@ function loadLevel(i) {
 
   for (let j = 0; j < data.capyCount; j++) {
     let cap = document.createElement("img");
-    cap.src = "capybara-removebg-preview.png";
+    cap.src = "cute-capybara-character-exotic-rodent-in-sunglasses-hand-drawn-illustration-vector-removebg-preview.png";
     cap.className = "capybara";
     cap.dataset.index = j;
     arena.appendChild(cap);

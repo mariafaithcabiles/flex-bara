@@ -155,24 +155,34 @@ function checkAnswer() {
     feedback.textContent = "❌ Try again!";
   }
 }
-function moveCapy() {
-  const arena = document.getElementById("arena");
-  const capy = document.getElementById("capybara");
-  const pond = document.querySelector(".pond");
+function moveCapys() {
+  const capys = arena.querySelectorAll(".capybara");
+  const ponds = arena.querySelectorAll(".pond");
 
-  
-  const pondRect = pond.getBoundingClientRect();
-  const arenaRect = arena.getBoundingClientRect();
+  capys.forEach((capy, i) => {
+    const arenaRect = arena.getBoundingClientRect();
+    const pondRect = ponds[i].getBoundingClientRect();
+    const capRect = capy.getBoundingClientRect();
 
- 
-  const targetX = pondRect.left - arenaRect.left + (pondRect.width / 2) - (capy.offsetWidth / 2);
-  const targetY = pondRect.top - arenaRect.top + (pondRect.height / 2) - (capy.offsetHeight / 2);
+    const capX = capRect.left - arenaRect.left + capRect.width / 2;
+    const capY = capRect.top - arenaRect.top + capRect.height / 2;
+    const pondX = pondRect.left - arenaRect.left + pondRect.width / 2;
+    const pondY = pondRect.top - arenaRect.top + pondRect.height / 2;
 
-  capy.style.transition = "transform 0.6s ease";
-  capy.style.transform = translate(${targetX}px, ${targetY}px);
+    const dx = pondX - capX;
+    const dy = pondY - capY;
 
-  
-  capy.style.zIndex = "10";
+    capy.style.transition = "transform 0.9s ease-in-out";
+    capy.style.transform = translate(${dx}px, ${dy}px);
+
+    capy.addEventListener("transitionend", () => {
+      capy.classList.add("arrived");
+      setTimeout(() => capy.classList.remove("arrived"), 400);
+
+      capy.style.transition = "none";
+      capy.style.transform = "none";  
+    }, { once: true });
+  });
 }
 
 /*

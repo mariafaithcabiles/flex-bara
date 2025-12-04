@@ -90,6 +90,7 @@ const desc = document.getElementById("description");
 const feedback = document.getElementById("feedback");
 const input = document.getElementById("codeInput");
 
+
 function loadLevel(i) {
   const data = levels[i];
   title.textContent = data.title;
@@ -98,9 +99,7 @@ function loadLevel(i) {
   feedback.textContent = "";
   input.value = "";
 
- 
   arena.innerHTML = "";
-
 
   for (let j = 0; j < data.capyCount; j++) {
     let cap = document.createElement("img");
@@ -110,20 +109,20 @@ function loadLevel(i) {
     arena.appendChild(cap);
   }
 
-
-  data.pond.forEach((p, idx) => {
+  data.pond.forEach((p) => {
     let pond = document.createElement("img");
     pond.src = "istockphoto-1249854606-612x612-removebg-preview.png";
     pond.className = "pond " + p;
     arena.appendChild(pond);
   });
 
-
   arena.style.display = "flex";
   arena.style.flexDirection = "row";
   arena.style.justifyContent = "flex-start";
   arena.style.alignItems = "flex-start";
 }
+
+
 
 function checkAnswer() {
   const user = input.value.replace(/\s+/g, "").toLowerCase().split(";");
@@ -139,12 +138,13 @@ function checkAnswer() {
 
   if (correct) {
     feedback.textContent = "✅ Correct!";
-  
     moveCapys();
   } else {
     feedback.textContent = "❌ Try again!";
   }
 }
+
+
 
 function moveCapys() {
   const capys = arena.querySelectorAll(".capybara");
@@ -165,16 +165,16 @@ function moveCapys() {
     const dy = pondY - capY;
 
     capy.style.transition = "transform 0.9s ease-in-out";
-    capy.style.transform = translate(${dx}px, ${dy}px);
+    capy.style.transform = `translate(${dx}px, ${dy}px)`;
 
     capy.addEventListener("transitionend", () => {
-      capy.classList.add("arrived");
-      setTimeout(() => capy.classList.remove("arrived"), 400);
       capy.style.transition = "none";
       capy.style.transform = "none"; // IMPORTANT FIX
     }, { once: true });
   });
- 
+}
+
+
 
 document.getElementById("submitBtn").addEventListener("click", checkAnswer);
 document.getElementById("nextBtn").addEventListener("click", () => {

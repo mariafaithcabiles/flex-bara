@@ -68,27 +68,17 @@ const levels = [
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
     hint: "Stack Flexbaras vertically in the middle.",
     description: "Use <b>flex-direction</b>, <b>justify-content</b> and <b>align-items</b>.",
-    answer: ["flex-direction:column", "justify-content:space-evenly", "align-items:center"],
+    answer: ["flex-direction:column", "justify-content: space-around", "align-items:center"],
     capyCount: 3
   },
-  {
-    title: "Level 10",
-    pond: ["pos-top-left", "pos-top-center", "pos-top-left"],
-    hint: "Three Flexbaras aligned horizontally on top with spacing.",
-    description: "Use <b>flex-direction</b> and spacing.",
-    answer: ["flex-direction: row;","justify-content: space-evenly;", "align-items: flex-start;"],
-    capyCount: 3
-  }
-];
-
-/*   {
+ {
     title: "Level 10",
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
     hint: "Three Flexbaras aligned vertically with space-between.",
     description: "Use <b>flex-direction</b> and spacing.",
     answer: ["flex-direction:column", "justify-content:space-between", "align-items:center"],
     capyCount: 3
-  } */
+  } 
 
 
 let level = 0;
@@ -155,37 +145,7 @@ function checkAnswer() {
     feedback.textContent = "❌ Try again!";
   }
 }
-function moveCapys() {
-  const capys = arena.querySelectorAll(".capybara");
-  const ponds = arena.querySelectorAll(".pond");
 
-  capys.forEach((capy, i) => {
-    const arenaRect = arena.getBoundingClientRect();
-    const pondRect = ponds[i].getBoundingClientRect();
-    const capRect = capy.getBoundingClientRect();
-
-    const capX = capRect.left - arenaRect.left + capRect.width / 2;
-    const capY = capRect.top - arenaRect.top + capRect.height / 2;
-    const pondX = pondRect.left - arenaRect.left + pondRect.width / 2;
-    const pondY = pondRect.top - arenaRect.top + pondRect.height / 2;
-
-    const dx = pondX - capX;
-    const dy = pondY - capY;
-
-    capy.style.transition = "transform 0.9s ease-in-out";
-    capy.style.transform = translate(${dx}px, ${dy}px);
-
-    capy.addEventListener("transitionend", () => {
-      capy.classList.add("arrived");
-      setTimeout(() => capy.classList.remove("arrived"), 400);
-
-      capy.style.transition = "none";
-      capy.style.transform = "none";  
-    }, { once: true });
-  });
-}
-
-/*
 function moveCapys() {
   const capys = arena.querySelectorAll(".capybara");
   const ponds = arena.querySelectorAll(".pond");
@@ -213,7 +173,7 @@ function moveCapys() {
       capy.style.transition = "none";
     }, { once: true });
   });
-} */
+} 
 
 document.getElementById("submitBtn").addEventListener("click", checkAnswer);
 document.getElementById("nextBtn").addEventListener("click", () => {

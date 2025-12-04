@@ -100,22 +100,20 @@ function loadLevel(i) {
   feedback.textContent = "";
   input.value = "";
 
- 
-  arena.innerHTML = "";
 
+  arena.innerHTML = "";
 
   for (let j = 0; j < data.capyCount; j++) {
     let cap = document.createElement("img");
-    cap.src = "cute-capybara-character-exotic-rodent-in-sunglasses-hand-drawn-illustration-vector-removebg-preview.png";
+    cap.src = "capybara-removebg-preview.png";
     cap.className = "capybara";
     cap.dataset.index = j;
     arena.appendChild(cap);
   }
 
-
   data.pond.forEach((p, idx) => {
     let pond = document.createElement("img");
-    pond.src = "istockphoto-1249854606-612x612-removebg-preview.png";
+    pond.src = "pond-removebg-preview.png";
     pond.className = "pond " + p;
     arena.appendChild(pond);
   });
@@ -141,7 +139,6 @@ function checkAnswer() {
 
   if (correct) {
     feedback.textContent = "✅ Correct!";
-  
     moveCapys();
   } else {
     feedback.textContent = "❌ Try again!";
@@ -167,7 +164,7 @@ function moveCapys() {
     const dy = pondY - capY;
 
     capy.style.transition = "transform 0.9s ease-in-out";
-    capy.style.transform = `translate(${dx}px, ${dy}px)`;
+    capy.style.transform = translate($,{dx},px, $,{dy},px);
 
     capy.addEventListener("transitionend", () => {
       capy.classList.add("arrived");
@@ -175,7 +172,7 @@ function moveCapys() {
       capy.style.transition = "none";
     }, { once: true });
   });
-} 
+}
 
 document.getElementById("submitBtn").addEventListener("click", checkAnswer);
 document.getElementById("nextBtn").addEventListener("click", () => {
@@ -189,6 +186,10 @@ document.getElementById("prevBtn").addEventListener("click", () => {
     level--;
     loadLevel(level);
   }
+});
+
+loadLevel(level);
+
 });
 
 loadLevel(level);

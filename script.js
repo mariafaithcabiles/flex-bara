@@ -83,6 +83,12 @@ const levels = [
 
 
 let level = 0;
+let score = 0;
+let attempts = 0;
+
+const scoreValue = document.getElementById("scoreValue");
+const attemptValue = document.getElementById("attemptValue");
+
 
 const arena = document.getElementById("arena");
 const title = document.getElementById("levelTitle");
@@ -98,7 +104,8 @@ function loadLevel(i) {
   desc.innerHTML = data.description;
   feedback.textContent = "";
   input.value = "";
-
+  attempts = 0;
+  attemptValue.textContent = attempts;
  
   arena.innerHTML = "";
 
@@ -110,6 +117,7 @@ function loadLevel(i) {
     cap.dataset.index = j;
     arena.appendChild(cap);
   }
+  
 
 
   data.pond.forEach((p, idx) => {
@@ -124,9 +132,15 @@ function loadLevel(i) {
   arena.style.flexDirection = "row";
   arena.style.justifyContent = "flex-start";
   arena.style.alignItems = "flex-start";
+
+document.getElementById("nextBtn").disabled = true;
+document.getElementById("attemptValue").textContent = 0;
 }
 
 function checkAnswer() {
+  attempts++;
+  attemptValue.textContent = attempts;
+
   const user = input.value.replace(/\s+/g, "").toLowerCase().split(";");
   const answer = levels[level].answer;
 
@@ -140,9 +154,17 @@ function checkAnswer() {
 
   if (correct) {
     feedback.textContent = "✅ Correct!";
+    score++;
+    scoreValue.textContent = score;
     moveCapys();
+
+    
+    document.getElementById("nextBtn").disabled = false;
   } else {
     feedback.textContent = "❌ Try again!";
+
+   
+    document.getElementById("nextBtn").disabled = true;
   }
 }
 
@@ -187,6 +209,7 @@ document.getElementById("prevBtn").addEventListener("click", () => {
     level--;
     loadLevel(level);
   }
+  
 });
 
 loadLevel(level);

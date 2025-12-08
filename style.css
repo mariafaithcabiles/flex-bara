@@ -126,11 +126,11 @@ button:hover {
 }
 #gameStats {
   position: absolute;
-  top: 10px;
-  left: 15px;
+  top: 5px;
+  left: 10px;
   text-align: left;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 17px;
   color: white;
   font-weight: bold;
 }

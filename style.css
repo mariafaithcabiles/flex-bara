@@ -22,6 +22,7 @@ header {
 }
 
 .card {
+  position: relative;
   background: #ce996e;
   border: 3px solid white;
   border-radius: 15px;
@@ -123,6 +124,17 @@ button:hover {
 .arrived {
   animation: bounce 0.5s;
 }
+#gameStats {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+}
+
 
 
 @keyframes bounce {

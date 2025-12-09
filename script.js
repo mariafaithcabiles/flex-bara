@@ -66,9 +66,9 @@ const levels = [
   {
     title: "Level 9",
     pond: ["pos-top-center", "pos-center", "pos-bottom-center"],
-    hint: "Stack Flexbaras vertically in the middle.",
+    hint: "Stack Flexbaras vertically in the middle. Use space-around",
     description: "Use <b>flex-direction</b>, <b>justify-content</b> and <b>align-items</b>.",
-    answer: ["flex-direction:column", "justify-content:center", "align-items:center"],
+    answer: ["flex-direction:column", "justify-content:space-around", "align-items:center"],
     capyCount: 3
   },
   {

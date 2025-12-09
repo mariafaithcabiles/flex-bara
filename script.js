@@ -81,7 +81,7 @@ const levels = [
   }
 ];
 
-
+let highestUnlockedLevel = 0;
 let level = 0;
 let score = 0;
 let attempts = 0;
@@ -158,6 +158,9 @@ function checkAnswer() {
     scoreValue.textContent = score;
     moveCapys();
 
+  if (level > highestUnlockedLevel) {
+  highestUnlockedLevel = level;
+}
     
     document.getElementById("nextBtn").disabled = false;
   } else {
@@ -202,14 +205,26 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   if (level < levels.length - 1) {
     level++;
     loadLevel(level);
+    
+  if (level <= highestUnlockedLevel) {
+      document.getElementById("nextBtn").disabled = false;
+    } else {
+      document.getElementById("nextBtn").disabled = true;
+    }
   }
 });
+
 document.getElementById("prevBtn").addEventListener("click", () => {
   if (level > 0) {
     level--;
     loadLevel(level);
+    
+  if (level <= highestUnlockedLevel) {
+      document.getElementById("nextBtn").disabled = false;
+    } else {
+      document.getElementById("nextBtn").disabled = true;
+    }
   }
-  
 });
 
 loadLevel(level);

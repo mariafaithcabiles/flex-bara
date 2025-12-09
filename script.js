@@ -137,6 +137,14 @@ document.getElementById("nextBtn").disabled = true;
 document.getElementById("attemptValue").textContent = 0;
 }
 
+const validSynonyms = {
+  "justify-content:flex-end": ["justify-content:flex-end", "justify-content:end"],
+  "justify-content:flex-start": ["justify-content:flex-start", "justify-content:start"],
+
+  "align-items:flex-end": ["align-items:flex-end", "align-items:end"],
+  "align-items:flex-start": ["align-items:flex-start", "align-items:start"]
+};
+
 function checkAnswer() {
   attempts++;
   attemptValue.textContent = attempts;
@@ -145,13 +153,28 @@ function checkAnswer() {
   const answer = levels[level].answer;
 
   let correct = true;
+  
   for (let i = 0; i < answer.length; i++) {
-    if (!user.includes(answer[i])) {
-      correct = false;
-      break;
-    }
-  }
+    let requirement = answer[i];
 
+    if (validSynonyms[requirement]) {
+      const allowed = validSynonyms[requirement];
+      const found = allowed.some(a => user.includes(a));
+
+      if (!found) {
+        correct = false;
+        break;
+      }
+    }
+
+    else {
+      if (!user.includes(requirement)) {
+        correct = false;
+        break;
+      }
+    } 
+  }
+  
   if (correct) {
     feedback.textContent = "✅ Correct!";
     score++;
